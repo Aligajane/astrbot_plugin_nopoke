@@ -2,7 +2,7 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 import time
 
-@register("nopoke", "YourName", "被戳一戳后根据次数回复不同内容", "1.0.0", "https://your-repo-url")
+@register("nopoke", "Pudding", "戳一戳的小插件", "1.0.0", "https://your-repo-url")
 class NoPokePlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
