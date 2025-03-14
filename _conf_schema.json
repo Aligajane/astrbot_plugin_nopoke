@@ -1,0 +1,22 @@
+{
+    "reply_message_1": {
+        "description": "第一次被戳时的回复内容",
+        "type": "string",
+        "default": "别戳啦！"
+    },
+    "reply_message_2": {
+        "description": "第二次被戳时的回复内容",
+        "type": "string",
+        "default": "生气了！"
+    },
+    "reply_message_3": {
+        "description": "第三次被戳时的回复内容",
+        "type": "string",
+        "default": "戳回去！"
+    },
+    "reply_message_4": {
+        "description": "第四次被戳时的回复内容",
+        "type": "string",
+        "default": "还戳！不理你了！"
+    }
+}
