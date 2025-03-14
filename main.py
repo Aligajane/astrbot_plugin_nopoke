@@ -4,8 +4,9 @@ import time
 
 @register("nopoke", "Pudding", "戳一戳的小插件", "1.0.0", "https://github.com/Aligajane/astrbot_plugin_nopoke")
 class NoPokePlugin(Star):
-    def __init__(self, context: Context):
+    def __init__(self, context: Context,config: dict):
         super().__init__(context)
+        self.config = config
         # 用于记录每个用户戳一戳的次数和时间
         self.poke_count = {}
 
@@ -18,7 +19,7 @@ class NoPokePlugin(Star):
         if user_id not in self.poke_count:
             # 如果用户第一次戳，初始化计数和时间
             self.poke_count[user_id] = {"count": 1, "last_time": current_time}
-            yield event.plain_result("别戳啦！")
+            reply_message = self.config.get("reply_message_1", "别戳啦!")
         else:
             # 如果用户已经戳过，检查时间间隔和计数
             last_time = self.poke_count[user_id]["last_time"]
@@ -27,16 +28,17 @@ class NoPokePlugin(Star):
 
             count = self.poke_count[user_id]["count"]
             if count == 2:
-                yield event.plain_result("生气了！")
+                reply_message = self.config.get("reply_message_2", "生气了！")
             elif count == 3:
-                yield event.plain_result("戳回去！")
-                # 模拟戳回去的操作（具体实现取决于平台适配器）
+                reply_message = self.config.get("reply_message_3", "戳回去！")
+                # 模拟戳回去的操作
                 await self.poke_back(event)
             elif count == 4:
-                yield event.plain_result("还戳！不理你了！")
-            elif count >= 5:
+                reply_message = self.config.get("reply_message_4", "还戳！不理你了！")
+            else:
                 # 第五次及以后不做任何操作
                 return
+
 
         # 如果超过1分钟没有被戳，重置计数
         if current_time - last_time > 60:
