@@ -2,7 +2,7 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 import time
 
-@register("nopoke", "Pudding", "戳一戳的小插件", "1.0.0", "https://your-repo-url")
+@register("nopoke", "Pudding", "戳一戳的小插件", "1.0.0", "https://github.com/Aligajane/astrbot_plugin_nopoke")
 class NoPokePlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
